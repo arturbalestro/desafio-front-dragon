@@ -1,45 +1,54 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { format } from 'date-fns';
 
-//Adding styles
-//TODO adapt this to styled-components
-const articleStyle = {
-  display: 'flex',
-  width: '50%',
-  margin: '0 auto',
-  color: 'olive',
-  alignItems: 'flex-start'
-};
+import { StyledDragonsList } from '../styles/StyledDragonsList';
 
 //TODO create interface for adding, editing and deleting dragons
 //TODO add better styles to the data
-let DragonsList = ({ dragons }) => {
+let renderDragons = (dragons) => {
+  //Sorting dragons by alphabetical order
+  const sortedDragons = dragons.sort((a, b) => a.name < b.name ? -1 : (a.name > b.name ? 1 : 0));
+
   //Rendering the dragon list if the data is found
+  return sortedDragons.map((dragon, index) => {
+    const { id, name, type, createdAt, history, histories } = dragon;
+
+    //Converting date to format 02/12/2012.  
+    const formattedDate = format(new Date(createdAt), 'dd/MM/yyyy hh:mm:ss');
+
+    return (
+      <article key={index}>
+        <div className="dragon-item">
+          <h2>{`${id}. ${name}`}</h2>
+          <h4>Type: {type}</h4>
+
+          <p><b>Created at:</b> {formattedDate}</p>
+
+          {history &&
+            <p><b>History:</b> {history}</p>
+          }
+
+          {/* TODO improve validation of the type of histories data */}
+          {histories && histories.length > 0 &&
+            <p><b>Histories:</b> {histories}</p>
+          }
+        </div>
+      </article>
+    )
+  });
+}
+
+const DragonsList = ({ dragons }) => {
   if (dragons) {
-    return dragons.map((dragon, index) => {
-      const { id, name, type, createdAt, history, histories } = dragon;
-
-      return (
-        <article style={articleStyle} key={index}>
-          <div>
-            <h1>{`${id}. ${name}`}</h1>
-            <h2>{type}</h2>
-
-            {/* TODO use momentjs to format the date */}
-            <p>Created at: {createdAt}</p>
-
-            {/* TODO verify variations of history/histories data */}
-            {<h4>{history}</h4>}
-            {<h4>{histories}</h4>}
-          </div>
-        </article>
-      )
-    });
+    return (
+      <StyledDragonsList>
+        {renderDragons(dragons)}
+      </StyledDragonsList>)
   }
 
-  //TODO guarantee that a message is returned if no dragons are found
   return null;
-}
+};
 
 //Mapping current list of dragons state to props
 const mapStateToProps = state => ({

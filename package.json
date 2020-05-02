@@ -1,0 +1,28 @@
+{
+  "name": "desafio-front-dragon",
+  "version": "1.0.0",
+  "description": "Desafio South System. Construir uma aplicação que liste e manipule dados sobre dragões.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arturbalestro/desafio-front-dragon.git"
+  },
+  "keywords": [
+    "south",
+    "system",
+    "dragon"
+  ],
+  "author": "Artur Balestro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arturbalestro/desafio-front-dragon/issues"
+  },
+  "homepage": "https://github.com/arturbalestro/desafio-front-dragon#readme",
+  "dependencies": {
+    "create-react-app": "^3.4.1"
+  },
+  "devDependencies": {}
+}

@@ -8,6 +8,7 @@ import reducer from './reducers';
 import rootSaga from './sagas';
 
 import './styles/index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 
 //Enabling the use of generator functions

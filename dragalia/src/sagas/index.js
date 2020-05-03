@@ -12,22 +12,22 @@ function* fetchDragons() {
   yield put({ type: actionTypes.DRAGONS_RECEIVED, dragons });
 }
 
-function* addDragon(newDragon) {
-  const addedDragon = yield axios.put(apiURL, newDragon).then(response => response.data);
+function* addDragon(action) {
+  const addedDragon = yield axios.post(apiURL, action.newDragon).then(response => response.data);
 
   //when the data is received, return the action result;
   yield put({ type: actionTypes.DRAGON_ADDED, addedDragon });
 }
 
 function* editDragon(action) {
-  const editedDragon = yield axios.post(apiURL + '/' + action.id).then(response => response.data);
+  const editedDragon = yield axios.put(apiURL + '/' + action.dragonId, action.newDragon).then(response => response.data);
 
   //when the data is received, return the action result;
-  yield put({ type: actionTypes.DRAGON_EDITED, editedDragon });
+  yield put({ type: actionTypes.DRAGON_EDITED, dragonId: action.dragonId, editedDragon });
 }
 
 function* deleteDragon(action) {
-  const deletedDragon = yield axios.delete(apiURL + '/' + action.id).then(response => response.data);
+  const deletedDragon = yield axios.delete(apiURL + '/' + action.dragonId).then(response => response.data);
 
   //when the data is received, return the action result;
   yield put({ type: actionTypes.DRAGON_DELETED, deletedDragon });

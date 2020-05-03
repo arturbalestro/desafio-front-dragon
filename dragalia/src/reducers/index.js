@@ -1,4 +1,5 @@
 import actionTypes from '../actions/types';
+import update from 'immutability-helper';
 
 const reducer = (state, action) => {
   //Preventing lint error of state not previously declared
@@ -13,21 +14,31 @@ const reducer = (state, action) => {
     return { ...state, dragons: action.dragons, loading: false };
   }
 
-  //TODO Fix add and edit reduce to match the actions
   if (action.type === actionTypes.ADD_DRAGON) {
-    return { ...state, loading: true };
+    return { ...state, loading: true, newDragon: action.newDragon };
   } else if (action.type === actionTypes.DRAGON_ADDED) {
-    return { ...state, dragons: action.dragons, loading: false };
+
+    //Updating state without modifying the original object
+    const updatedState = update(state.dragons, { $push: [action.addedDragon] });
+
+    return { ...state, dragons: updatedState, loading: false };
   }
 
   if (action.type === actionTypes.EDIT_DRAGON) {
-    return { ...state, loading: true, dragonId: action.id };
+    return { ...state, loading: true, dragonId: action.dragonId, newDragon: action.newDragon };
   } else if (action.type === actionTypes.DRAGON_EDITED) {
-    return { ...state, dragons: action.editedDragon, loading: false };
+
+    //Updating state without modifying the original object
+    //Removing the old object to add the new one to the array
+    const updatedDragons = state.dragons.filter(dragon => dragon.id !== action.dragonId);
+    const setDragons = update(state.dragons, { $set: updatedDragons });
+    const updatedState = update(setDragons, { $push: [action.editedDragon] });
+
+    return { ...state, dragons: updatedState, loading: false };
   }
 
   if (action.type === actionTypes.DELETE_DRAGON) {
-    return { ...state, loading: true, dragonId: action.id };
+    return { ...state, loading: true, dragonId: action.dragonId };
   } else if (action.type === actionTypes.DRAGON_DELETED) {
     return { ...state, dragons: state.dragons.filter(dragon => dragon.id !== action.deletedDragon.id), loading: false };
   }

@@ -23,7 +23,7 @@ let renderDragons = (dragons) => {
       <StyledDragonContainer key={index}>
         <div className="dragon-item">
           <h2>{`${id}. ${name}`}</h2>
-          <h4>Type: {type}</h4>
+          <p><b>Type:</b> {type}</p>
 
           <p><b>Created at:</b> {formattedDate}</p>
 

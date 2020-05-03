@@ -8,12 +8,14 @@ export const StyledHeader = styled.div`
     font-size: calc(10px + 2vmin);
     color: white;
     text-align: center;
-    padding: 0 20px;
+    padding: 20px;
 
     h1 {
+        font-weight: bold;
         margin-bottom: 0;
     }
-    h2 {
+    h3 {
+        font-weight: bold;
         margin-top: 5px;
     }
 `;

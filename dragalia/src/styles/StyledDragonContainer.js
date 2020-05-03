@@ -20,10 +20,9 @@ export const StyledDragonContainer = styled.div`
 
         h2 {
             color: #666;
+            font-size: 1.5rem;
+            font-weight: bold;
             margin: 0 0 5px 0;
-        }
-        h4 {
-            margin: 0 25px;
         }
         p {
             margin: 5px 25px;

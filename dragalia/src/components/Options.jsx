@@ -6,7 +6,6 @@ import { StyledButton } from '../styles/StyledButton';
 import EditDragonModal from './EditDragonModal';
 
 //Button to call the action.
-//TODO use icons instead of the action name
 const Options = (props) => {
     const { dragon, deleteDragon } = props;
     const [editModal, setEditModal] = useState(false);
@@ -38,7 +37,7 @@ const mapStateToProps = state => {
     }
 }
 
-//Dispatching action to get the dragons list
+//Dispatching action to use as props
 const mapDispatchToProps = {
     deleteDragon
 };

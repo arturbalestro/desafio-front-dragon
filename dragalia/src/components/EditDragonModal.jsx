@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Formik } from 'formik';
+
 import { editDragon } from '../actions';
+import { StyledButton } from '../styles/StyledButton';
 
 const EditDragonModal = ({ isOpen, toggle, currentDragon, editDragon }) => {
 
     return (
         <div>
             <Modal isOpen={isOpen} toggle={toggle}>
-                <ModalHeader toggle={toggle}>ADD A DRAGON TO THE LIST</ModalHeader>
+                <ModalHeader toggle={toggle}>UPDATE THE DRAGON INFORMATION</ModalHeader>
                 <ModalBody>
                     <Formik
                         initialValues={{
@@ -83,7 +85,11 @@ const EditDragonModal = ({ isOpen, toggle, currentDragon, editDragon }) => {
                                         </div>
                                     </FormGroup>
                                     <FormGroup className="text-right">
-                                        <Button type="submit" disabled={isSubmitting}>Edit</Button>
+                                        <StyledButton
+                                            type="submit"
+                                            disabled={isSubmitting}>
+                                            Edit
+                                        </StyledButton>
                                     </FormGroup>
                                 </Form>
                             )}
@@ -94,7 +100,7 @@ const EditDragonModal = ({ isOpen, toggle, currentDragon, editDragon }) => {
     );
 }
 
-//Dispatching action to get the dragons list
+//Dispatching action to use as props
 const mapDispatchToProps = {
     editDragon
 };

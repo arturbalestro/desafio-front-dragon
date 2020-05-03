@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.div`
+export const StyledButton = styled.button`
     box-sizing: border-box;
     font-weight: bold;
-    margin: 0 0 20px 0;
-    padding: 20px;
-    min-height: 30px;
+    margin: 0;
+    padding: 15px;
     border-radius: 5px;
     border: none;
     color: white;
@@ -20,5 +19,10 @@ export const StyledButton = styled.div`
         margin: 0 10px;
         padding: 10px;
         font-size: 0.8rem;
+    }
+
+    &.add-button {
+        display: inline-block;
+        margin: auto;
     }
 `;

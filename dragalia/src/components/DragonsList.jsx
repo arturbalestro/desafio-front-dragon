@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { format } from 'date-fns';
 
@@ -7,12 +7,11 @@ import { StyledDragonContainer } from '../styles/StyledDragonContainer';
 import { StyledButton } from '../styles/StyledButton';
 import AddDragonModal from './AddDragonModal';
 import Options from './Options';
+import { getDragons } from '../actions';
 
-//TODO create interface for adding, editing and deleting dragons
-//TODO add better styles to the data
 let renderDragons = (dragons) => {
   //Sorting dragons by alphabetical order
-  const sortedDragons = dragons.sort((a, b) => a.name < b.name ? -1 : (a.name > b.name ? 1 : 0));
+  const sortedDragons = dragons.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0));
 
   //Rendering the dragon list if the data is found
   return sortedDragons.map((dragon, index) => {
@@ -33,7 +32,6 @@ let renderDragons = (dragons) => {
             <p><b>History:</b> {history}</p>
           }
 
-          {/* TODO improve validation of the type of histories data */}
           {histories && histories.length > 0 &&
             <p><b>Histories:</b> {histories}</p>
           }
@@ -44,16 +42,20 @@ let renderDragons = (dragons) => {
   });
 }
 
-const DragonsList = ({ dragons }) => {
+const DragonsList = ({ dragons, getDragons }) => {
   const [addModal, setAddModal] = useState(false);
   const toggleAddModal = () => setAddModal(!addModal);
+
+  useEffect(() => {
+    getDragons();
+  }, [getDragons]);
 
   if (dragons) {
     return (
       <StyledDragonsList>
         {renderDragons(dragons)}
         <StyledButton
-          className="options"
+          className="add-button"
           onClick={toggleAddModal} title="ADD">
           ADD A NEW DRAGON
         </StyledButton>
@@ -69,4 +71,9 @@ const mapStateToProps = state => ({
   dragons: state.dragons,
 });
 
-export default connect(mapStateToProps, null)(DragonsList);
+//Dispatching action to use as props
+const mapDispatchToProps = {
+  getDragons
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DragonsList);

@@ -42,7 +42,6 @@ function* actionWatcher() {
 }
 
 //Return the root saga with the sequence of actions
-//TODO define this as a specific saga to list the dragons, instead of being the root one
 export default function* rootSaga() {
   yield all([actionWatcher()]);
 }

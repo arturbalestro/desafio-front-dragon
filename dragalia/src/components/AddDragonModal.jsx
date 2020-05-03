@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Formik } from 'formik';
+
 import { addDragon } from '../actions';
+import { StyledButton } from '../styles/StyledButton';
 
 const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
 
@@ -79,7 +81,11 @@ const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
                                         </div>
                                     </FormGroup>
                                     <FormGroup className="text-right">
-                                        <Button type="submit" disabled={isSubmitting}>Add</Button>
+                                        <StyledButton
+                                            type="submit"
+                                            disabled={isSubmitting}>
+                                            Add
+                                        </StyledButton>
                                     </FormGroup>
                                 </Form>
                             )}
@@ -90,7 +96,7 @@ const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
     );
 }
 
-//Dispatching action to get the dragons list
+//Dispatching action to use as props
 const mapDispatchToProps = {
     addDragon
 };

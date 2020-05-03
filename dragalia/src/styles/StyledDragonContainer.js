@@ -19,13 +19,16 @@ export const StyledDragonContainer = styled.div`
         min-width: 50%;
 
         h2 {
-            color: #666;
             font-size: 1.5rem;
             font-weight: bold;
             margin: 0 0 5px 0;
         }
         p {
-            margin: 5px 25px;
+            margin: 5px 0;
+
+            b {
+                color: olive;
+            }
         }
     }
 `;

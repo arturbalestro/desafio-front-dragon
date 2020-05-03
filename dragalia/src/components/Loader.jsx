@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import img from '../img/ripple.gif';
+import img from '../img/dragon-loader.gif';
+import { StyledLoader } from '../styles/StyledLoader';
 
 //Adding loading state to wait for the action call to finish.
-//TODO remove these styles and use a better icon
-let Loading = ({ loading }) =>
+let Loader = ({ loading }) =>
   loading ? (
-    <div style={{ textAlign: 'center' }}>
+    <StyledLoader>
       <img src={img} alt="loading" />
-    </div>
+    </StyledLoader>
   ) : null;
 
 //Mapping loading state
 const mapStateToProps = state => ({ loading: state.loading });
 
-export default connect(mapStateToProps, null)(Loading);
+export default connect(mapStateToProps, null)(Loader);

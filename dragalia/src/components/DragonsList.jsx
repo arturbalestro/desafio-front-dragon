@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { format } from 'date-fns';
 
 import { StyledDragonsList } from '../styles/StyledDragonsList';
 import { StyledDragonContainer } from '../styles/StyledDragonContainer';
+import { StyledButton } from '../styles/StyledButton';
+import AddDragonModal from './AddDragonModal';
 import Options from './Options';
 
 //TODO create interface for adding, editing and deleting dragons
@@ -14,7 +16,7 @@ let renderDragons = (dragons) => {
 
   //Rendering the dragon list if the data is found
   return sortedDragons.map((dragon, index) => {
-    const { id, name, type, createdAt, history, histories } = dragon;
+    const { name, type, createdAt, history, histories } = dragon;
 
     //Converting date to format 02/12/2012.  
     const formattedDate = format(new Date(createdAt), 'dd/MM/yyyy hh:mm:ss');
@@ -22,7 +24,7 @@ let renderDragons = (dragons) => {
     return (
       <StyledDragonContainer key={index}>
         <div className="dragon-item">
-          <h2>{`${id}. ${name}`}</h2>
+          <h2>{name}</h2>
           <p><b>Type:</b> {type}</p>
 
           <p><b>Created at:</b> {formattedDate}</p>
@@ -43,10 +45,19 @@ let renderDragons = (dragons) => {
 }
 
 const DragonsList = ({ dragons }) => {
+  const [addModal, setAddModal] = useState(false);
+  const toggleAddModal = () => setAddModal(!addModal);
+
   if (dragons) {
     return (
       <StyledDragonsList>
         {renderDragons(dragons)}
+        <StyledButton
+          className="options"
+          onClick={toggleAddModal} title="ADD">
+          ADD A NEW DRAGON
+        </StyledButton>
+        <AddDragonModal isOpen={addModal} toggle={toggleAddModal} />
       </StyledDragonsList>)
   }
 

@@ -9,5 +9,5 @@ export const StyledDragonsList = styled.div`
     flex-direction: column;
     width: 80%;
     margin: 10px auto;
-    color: olive;
+    color: #666;
 `;

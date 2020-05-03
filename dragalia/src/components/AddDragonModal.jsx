@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormFeedback, Col } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Formik } from 'formik';
 import { addDragon } from '../actions';
 
@@ -66,7 +66,7 @@ const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="dragonHistory">The History of the Dragon</Label>
-                                        <Col sm={10}>
+                                        <div>
                                             <Input
                                                 type="textarea"
                                                 name="dragonHistory"
@@ -76,9 +76,11 @@ const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
                                                 value={values.dragonHistory}
                                             />
                                             <FormFeedback>{errors.dragonHistory && touched.dragonHistory && errors.dragonHistory}</FormFeedback>
-                                        </Col>
+                                        </div>
                                     </FormGroup>
-                                    <Button type="submit" disabled={isSubmitting}>Add</Button>
+                                    <FormGroup className="text-right">
+                                        <Button type="submit" disabled={isSubmitting}>Add</Button>
+                                    </FormGroup>
                                 </Form>
                             )}
                     </Formik>

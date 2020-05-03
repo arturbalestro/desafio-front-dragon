@@ -14,4 +14,10 @@ export const StyledButton = styled.div`
     outline: none;
     cursor: pointer;
     text-align: center;
+
+    &.options {
+        margin: 0 10px;
+        padding: 10px;
+        font-size: 0.8rem;
+    }
 `;

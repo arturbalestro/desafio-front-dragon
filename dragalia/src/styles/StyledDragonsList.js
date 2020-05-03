@@ -7,22 +7,7 @@ export const StyledDragonsList = styled.div`
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 50%;
+    width: 80%;
     margin: 10px auto;
     color: olive;
-
-    .dragon-item {
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        margin: 0 0 5px 0;
-    }
-    h4 {
-        margin: 0 25px;
-    }
-    p {
-        margin: 5px 25px;
-    }
 `;

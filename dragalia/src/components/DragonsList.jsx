@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { format } from 'date-fns';
 
 import { StyledDragonsList } from '../styles/StyledDragonsList';
+import { StyledDragonContainer } from '../styles/StyledDragonContainer';
+import Options from './Options';
 
 //TODO create interface for adding, editing and deleting dragons
 //TODO add better styles to the data
@@ -18,7 +20,7 @@ let renderDragons = (dragons) => {
     const formattedDate = format(new Date(createdAt), 'dd/MM/yyyy hh:mm:ss');
 
     return (
-      <article key={index}>
+      <StyledDragonContainer key={index}>
         <div className="dragon-item">
           <h2>{`${id}. ${name}`}</h2>
           <h4>Type: {type}</h4>
@@ -34,7 +36,8 @@ let renderDragons = (dragons) => {
             <p><b>Histories:</b> {histories}</p>
           }
         </div>
-      </article>
+        <Options dragon={dragon} />
+      </StyledDragonContainer>
     )
   });
 }

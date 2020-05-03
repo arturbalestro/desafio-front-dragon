@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import img from '../img/dragon-loader.gif';
-import { StyledLoader } from '../styles/StyledLoader';
+import img from '../../../img/dragon-loader.gif';
+import { StyledLoader } from '../../../styles/StyledLoader';
 
 //Adding loading state to wait for the action call to finish.
-let Loader = ({ loading }) =>
+export const Loader = ({ loading }) =>
   loading ? (
     <StyledLoader>
       <img src={img} alt="loading" />

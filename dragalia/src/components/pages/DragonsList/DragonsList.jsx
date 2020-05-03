@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { format } from 'date-fns';
 
-import { StyledDragonsList } from '../styles/StyledDragonsList';
-import { StyledDragonContainer } from '../styles/StyledDragonContainer';
-import { StyledButton } from '../styles/StyledButton';
-import AddDragonModal from './AddDragonModal';
-import Options from './Options';
-import { getDragons } from '../actions';
+import { StyledDragonsList } from '../../../styles/StyledDragonsList';
+import { StyledDragonContainer } from '../../../styles/StyledDragonContainer';
+import { StyledButton } from '../../../styles/StyledButton';
+import AddDragonModal from '../../modals/AddDragonModal/AddDragonModal';
+import Options from '../../atoms/Options/Options';
+import { getDragons } from '../../../actions';
 
 let renderDragons = (dragons) => {
   //Sorting dragons by alphabetical order
@@ -42,7 +42,7 @@ let renderDragons = (dragons) => {
   });
 }
 
-const DragonsList = ({ dragons, getDragons }) => {
+export const DragonsList = ({ dragons, getDragons }) => {
   const [addModal, setAddModal] = useState(false);
   const toggleAddModal = () => setAddModal(!addModal);
 

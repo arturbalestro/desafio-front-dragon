@@ -14,6 +14,8 @@ export const StyledButton = styled.button`
     outline: none;
     cursor: pointer;
     text-align: center;
+    min-width: 100px;
+    text-transform: uppercase;
 
     &.options {
         margin: 0 10px;

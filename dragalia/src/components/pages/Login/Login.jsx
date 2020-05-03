@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Formik } from 'formik';
 
-import { getDragons } from '../actions';
-import { StyledLogin } from '../styles/StyledLogin';
-import { StyledButton } from '../styles/StyledButton';
+import { getDragons } from '../../../actions';
+import { StyledLogin } from '../../../styles/StyledLogin';
+import { StyledButton } from '../../../styles/StyledButton';
 
 const Login = ({ getDragons, history }) => {
 

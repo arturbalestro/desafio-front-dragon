@@ -3,18 +3,22 @@ import { connect } from 'react-redux';
 import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Formik } from 'formik';
 
-import { addDragon } from '../actions';
-import { StyledButton } from '../styles/StyledButton';
+import { editDragon } from '../../../actions';
+import { StyledButton } from '../../../styles/StyledButton';
 
-const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
+export const EditDragonModal = ({ isOpen, toggle, currentDragon, editDragon }) => {
 
     return (
         <div>
             <Modal isOpen={isOpen} toggle={toggle}>
-                <ModalHeader toggle={toggle}>ADD A DRAGON TO THE LIST</ModalHeader>
+                <ModalHeader toggle={toggle}>UPDATE THE DRAGON INFORMATION</ModalHeader>
                 <ModalBody>
                     <Formik
-                        initialValues={{ dragonName: '', dragonType: '', dragonHistory: '' }}
+                        initialValues={{
+                            dragonName: currentDragon ? currentDragon.name : '',
+                            dragonType: currentDragon ? currentDragon.type : '',
+                            dragonHistory: currentDragon ? currentDragon.history || currentDragon.histories : ''
+                        }}
                         validate={values => {
                             const errors = {};
                             if (!values.dragonName) errors.dragonName = 'Required';
@@ -29,7 +33,7 @@ const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
                                 history: values.dragonHistory
                             }
 
-                            addDragon(newDragon);
+                            editDragon(currentDragon.id, newDragon);
                             setSubmitting(false);
                             toggle();
                         }}
@@ -84,7 +88,7 @@ const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
                                         <StyledButton
                                             type="submit"
                                             disabled={isSubmitting}>
-                                            Add
+                                            Edit
                                         </StyledButton>
                                     </FormGroup>
                                 </Form>
@@ -98,7 +102,7 @@ const AddDragonModal = ({ isOpen, toggle, addDragon }) => {
 
 //Dispatching action to use as props
 const mapDispatchToProps = {
-    addDragon
+    editDragon
 };
 
-export default connect(null, mapDispatchToProps)(AddDragonModal);
+export default connect(null, mapDispatchToProps)(EditDragonModal);

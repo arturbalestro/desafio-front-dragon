@@ -1,11 +1,31 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+import rootSaga from './sagas';
+import { BrowserRouter } from 'react-router-dom';
+import createSagaMiddleware from 'redux-saga';
+import { logger } from 'redux-logger';
+import { createStore, applyMiddleware } from 'redux';
 import { render } from '@testing-library/react';
 import App from './App';
 
-//TODO perform an actual test using jest
+//Enabling the use of generator functions
+const sagaMiddleware = createSagaMiddleware();
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+//Creating the store and passing the reducers, middleware to use sagas and the console logger.
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware, logger),
+);
+
+//Run the saga defined in sagas/index
+sagaMiddleware.run(rootSaga);
+
+test('renders the Dragalia app', () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>);
 });

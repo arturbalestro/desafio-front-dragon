@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { deleteDragon } from '../actions';
-import { StyledOptions } from '../styles/StyledOptions';
-import { StyledButton } from '../styles/StyledButton';
-import EditDragonModal from './EditDragonModal';
+import { deleteDragon } from '../../../actions';
+import { StyledOptions } from '../../../styles/StyledOptions';
+import { StyledButton } from '../../../styles/StyledButton';
+import EditDragonModal from '../../modals/EditDragonModal/EditDragonModal';
 
 //Button to call the action.
-const Options = (props) => {
+export const Options = (props) => {
     const { dragon, deleteDragon } = props;
     const [editModal, setEditModal] = useState(false);
     const toggleEditModal = () => setEditModal(!editModal);

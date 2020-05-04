@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { Formik } from 'formik';
 
-import { getDragons } from '../../../actions';
+import { addUser, getDragons } from '../../../actions';
 import { StyledLogin } from '../../../styles/StyledLogin';
 import { StyledButton } from '../../../styles/StyledButton';
 
-const Login = ({ getDragons, history }) => {
+const Login = ({ addUser, getDragons, history }) => {
 
     return (
         <StyledLogin>
@@ -20,10 +20,11 @@ const Login = ({ getDragons, history }) => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    // const newUser = {
-                    //     name: values.userName,
-                    //     type: values.password
-                    // }
+                    const newUser = {
+                        name: values.userName,
+                        type: values.password
+                    }
+                    addUser(newUser);
                     //TODO Implement action for logging in with the user data
                     //TODO Solve the issue with Firebase API access to add and fetch user information
 
@@ -81,6 +82,7 @@ const Login = ({ getDragons, history }) => {
 
 //Dispatching action to use as props
 const mapDispatchToProps = {
+    addUser,
     getDragons
 };
 

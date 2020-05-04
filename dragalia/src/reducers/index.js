@@ -15,6 +15,8 @@ const reducer = (state, action) => {
     const updatedState = update(state.users, { $push: [action.addedUser] });
 
     return { ...state, users: updatedState, loading: false };
+  } else if (action.type === actionTypes.ADD_USER_FAILED) {
+    return { ...state, loading: false };
   }
 
   //Updating state with the actions
@@ -22,6 +24,8 @@ const reducer = (state, action) => {
     return { ...state, loading: true };
   } else if (action.type === actionTypes.DRAGONS_RECEIVED) {
     return { ...state, dragons: action.dragons, loading: false };
+  } else if (action.type === actionTypes.GET_DRAGONS_FAILED) {
+    return { ...state, loading: false };
   }
 
   if (action.type === actionTypes.ADD_DRAGON) {
@@ -32,6 +36,8 @@ const reducer = (state, action) => {
     const updatedState = update(state.dragons, { $push: [action.addedDragon] });
 
     return { ...state, dragons: updatedState, loading: false };
+  } else if (action.type === actionTypes.ADD_DRAGON_FAILED) {
+    return { ...state, loading: false };
   }
 
   if (action.type === actionTypes.EDIT_DRAGON) {
@@ -45,12 +51,16 @@ const reducer = (state, action) => {
     const updatedState = update(setDragons, { $push: [action.editedDragon] });
 
     return { ...state, dragons: updatedState, loading: false };
+  } else if (action.type === actionTypes.EDIT_DRAGON_FAILED) {
+    return { ...state, loading: false };
   }
 
   if (action.type === actionTypes.DELETE_DRAGON) {
     return { ...state, loading: true, dragonId: action.dragonId };
   } else if (action.type === actionTypes.DRAGON_DELETED) {
     return { ...state, dragons: state.dragons.filter(dragon => dragon.id !== action.deletedDragon.id), loading: false };
+  } else if (action.type === actionTypes.DELETE_DRAGON_FAILED) {
+    return { ...state, loading: false };
   }
 
   return state;

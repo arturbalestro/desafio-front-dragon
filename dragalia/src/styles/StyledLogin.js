@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledLogin = styled.div`
     display: flex;
     flex-direction: column;
-    width: 25%;
     background: #FFF;
     padding: 20px;
     border: 5px solid olive;
@@ -20,6 +19,7 @@ export const StyledLogin = styled.div`
 
     input {
         color: #666;
+        font-size: 16px;
         margin-bottom: 20px;
     }
 `;

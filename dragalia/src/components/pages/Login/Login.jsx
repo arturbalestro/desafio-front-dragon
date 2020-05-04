@@ -20,11 +20,12 @@ const Login = ({ getDragons, history }) => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    const newUser = {
-                        name: values.userName,
-                        type: values.password
-                    }
+                    // const newUser = {
+                    //     name: values.userName,
+                    //     type: values.password
+                    // }
                     //TODO Implement action for logging in with the user data
+                    //TODO Solve the issue with Firebase API access to add and fetch user information
 
                     getDragons();
                     setSubmitting(false);

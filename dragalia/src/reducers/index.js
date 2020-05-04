@@ -7,6 +7,16 @@ const reducer = (state, action) => {
     return 0;
   }
 
+  if (action.type === actionTypes.ADD_USER) {
+    return { ...state, loading: true, newUser: action.newUser };
+  } else if (action.type === actionTypes.USER_ADDED) {
+
+    //Updating state without modifying the original object
+    const updatedState = update(state.users, { $push: [action.addedUser] });
+
+    return { ...state, users: updatedState, loading: false };
+  }
+
   //Updating state with the actions
   if (action.type === actionTypes.GET_DRAGONS) {
     return { ...state, loading: true };
